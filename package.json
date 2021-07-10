@@ -1,0 +1,36 @@
+{
+  "name": "mydns",
+  "version": "0.0.1",
+  "main": "dist/main.js",
+  "bin": "dist/main.js",
+  "files": [
+    "dist/**"
+  ],
+  "repository": "https://github.com/wilsonzlin/mydns",
+  "author": "Wilson Lin <npm@wilsonl.in>",
+  "license": "ISC",
+  "scripts": {
+    "build": "npm run clean && esbuild src/main.ts --bundle --outdir=dist --platform=node && chmod +x dist/main.js",
+    "clean": "rm -rf dist",
+    "dev": "node dev.js",
+    "format": "prettier --write '*.js' 'src/**/*.{css,ts,tsx}'",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@xtjs/lib": "^0.21.3",
+    "got": "^11.8.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sacli": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/got": "^9.6.12",
+    "@types/node": "^16.3.1",
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "chokidar": "^3.5.2",
+    "esbuild": "^0.12.15",
+    "prettier": "2.3.2",
+    "typescript": "^4.3.5"
+  }
+}
