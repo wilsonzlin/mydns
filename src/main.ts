@@ -44,7 +44,7 @@ export const startMydns = async ({
       "--log-facility=-",
       "--pid-file=/dev/null",
       `--port=${dnsPort}`,
-      "--server=127.0.0.53#5353",
+      "--server=127.0.33.88#9193",
     ],
     { stdio: ["ignore", "inherit", "inherit"] }
   );
@@ -62,7 +62,7 @@ tls_query_padding_blocksize: 256
 edns_client_subnet_private: 1
 idle_timeout: 10000
 listen_addresses:
-  - 127.0.0.53@5353
+  - 127.0.33.88@9193
 round_robin_upstreams: 1
 upstream_recursive_servers:
   - address_data: 8.8.8.8
