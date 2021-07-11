@@ -1,4 +1,4 @@
-import { writeFile } from "fs/promises";
+import { rm, writeFile } from "fs/promises";
 import got from "got";
 import { EOL } from "os";
 import { join } from "path";
@@ -50,6 +50,7 @@ export const POST = async (ctx: Ctx, { url }: { url: string }) => {
     parsed.push(`0.0.0.0 ${domain}`);
   }
 
+  await rm(join(ctx.hostsDisabledDir, toHostsFileName(url)), { force: true });
   await writeFile(join(ctx.hostsDir, toHostsFileName(url)), parsed.join(EOL));
 
   return (
