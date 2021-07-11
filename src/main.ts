@@ -7,6 +7,7 @@ import splitString from "@xtjs/lib/js/splitString";
 import { spawn } from "child_process";
 import { mkdir, realpath, writeFile } from "fs/promises";
 import { createServer } from "http";
+import { AddressInfo } from "net";
 import { join } from "path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Command } from "sacli";
@@ -112,7 +113,11 @@ upstream_recursive_servers:
       })
       .end(html);
   });
-  admin.listen(adminPort);
+  admin.listen(adminPort, () =>
+    console.log(
+      `Admin server listening on port ${(admin.address() as AddressInfo).port}`
+    )
+  );
 
   return {
     end: () => {

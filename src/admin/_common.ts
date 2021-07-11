@@ -17,3 +17,5 @@ export const toHostsFileName = (url: string) =>
   encodeBase64UrlSafe(encodeUtf8(url));
 export const toUrl = (hostsFileName: string) =>
   decodeUtf8(decodeBase64UrlSafe(hostsFileName));
+
+export const IPV4_REGEX = /^([0-9]{1,3}\.){3}[0-9]{1,3}$/;

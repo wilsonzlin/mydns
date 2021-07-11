@@ -9,12 +9,11 @@ chokidar.watch(join(__dirname, "src")).on("all", (event, path) => {
   clearTimeout(procDebounce);
   procDebounce = setTimeout(() => {
     proc?.kill();
-    try {
-      spawnSync("npm", ["run", "build"], {
-        stdio: ["ignore", "inherit", "inherit"],
-      });
-    } catch (e) {
-      return console.error(e);
+    const build = spawnSync("npm", ["run", "--silent", "build"], {
+      stdio: ["ignore", "inherit", "inherit"],
+    });
+    if (build.error ?? build.status) {
+      return console.error(build.error ?? `Exited with ${build.status}`);
     }
     console.log("Starting server...");
     proc = spawn(

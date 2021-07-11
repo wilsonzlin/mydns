@@ -1,22 +1,35 @@
+import maybeFileStats from "@xtjs/lib/js/maybeFileStats";
+import propertyComparator from "@xtjs/lib/js/propertyComparator";
 import { readdir } from "fs/promises";
+import { join } from "path";
 import React from "react";
 import { Ctx, toUrl } from "./_common";
 
 export const GET = async (ctx: Ctx, {}: {}) => {
   const lists = await Promise.all([
     readdir(ctx.hostsDir).then((ents) =>
-      ents.map((e) => ({
-        url: toUrl(e),
-        enabled: true,
-      }))
+      Promise.all(
+        ents.map(async (e) => ({
+          url: toUrl(e),
+          updated: await maybeFileStats(join(ctx.hostsDir, e)).then(
+            (r) => r?.mtime
+          ),
+          enabled: true,
+        }))
+      )
     ),
     readdir(ctx.hostsDisabledDir).then((ents) =>
-      ents.map((e) => ({
-        url: toUrl(e),
-        enabled: false,
-      }))
+      Promise.all(
+        ents.map(async (e) => ({
+          url: toUrl(e),
+          updated: await maybeFileStats(join(ctx.hostsDisabledDir, e)).then(
+            (r) => r?.mtime
+          ),
+          enabled: false,
+        }))
+      )
     ),
-  ]).then((r) => r.flat());
+  ]).then((r) => Promise.all(r.flat().sort(propertyComparator("url"))));
 
   return (
     <div>
@@ -26,6 +39,7 @@ export const GET = async (ctx: Ctx, {}: {}) => {
           <tr>
             <th />
             <th>URL</th>
+            <th>Updated</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -41,7 +55,14 @@ export const GET = async (ctx: Ctx, {}: {}) => {
                 />
               </td>
               <td>{l.url}</td>
+              <td>{l.updated?.toLocaleString()}</td>
               <td>
+                {l.enabled && (
+                  <form action="/AddList" method="post">
+                    <input type="hidden" name="url" value={l.url} />
+                    <button type="submit">Update</button>
+                  </form>
+                )}
                 <form action="/ToggleList" method="post">
                   <input type="hidden" name="url" value={l.url} />
                   {l.enabled ? (

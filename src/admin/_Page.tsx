@@ -7,22 +7,57 @@ const STYLE = `
   }
 
   :root {
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+  
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+  
+  button {
+    padding: 6px 12px;
+  }
+  
+  input {
+    padding: 8px;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  label > * {
+    display: block;
+    resize: none;
+    width: 100%;
   }
 
   table {
     border-collapse: collapse;
     width: 100%;
   }
-  
+
   th, td {
+    border: 1px solid #ccc;
     padding: 8px;
   }
-  
+
   th {
     text-align: left;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 
@@ -32,27 +67,27 @@ export const Page = ({
 }: {
   content: ReactNode;
   title: string;
-}) => {
-  return (
-    <html>
-      <head>
-        <meta charSet="utf-8" />
-        <title>{title} - MyDNS</title>
-        <style dangerouslySetInnerHTML={{ __html: STYLE }} />
-      </head>
-      <body>
-        <header>
-          <h1>MyDNS</h1>
-          <nav>
-            <ul>
-              <li>
-                <a href="/AddList">Add list</a>
-              </li>
-            </ul>
-          </nav>
-        </header>
-        <main>{content}</main>
-      </body>
-    </html>
-  );
-};
+}) => (
+  <html>
+    <head>
+      <meta charSet="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+      />
+      <title>{title} - MyDNS</title>
+      <style dangerouslySetInnerHTML={{ __html: STYLE }} />
+    </head>
+    <body>
+      <header>
+        <h1>
+          <a href="/">MyDNS</a>
+        </h1>
+        <nav>
+          <a href="/AddList">Add list</a>
+        </nav>
+      </header>
+      <main>{content}</main>
+    </body>
+  </html>
+);
