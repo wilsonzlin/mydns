@@ -8,7 +8,7 @@ import { Ctx, IPV4_REGEX, toHostsFileName } from "./_common";
 export const GET = async (_ctx: Ctx, {}: {}) => {
   return (
     <div>
-      <form method="post" action="/AddList">
+      <form method="post" action="/AddOrUpdateBlocklist">
         <label>
           <span>URL</span>
           <input name="url" />
@@ -69,7 +69,7 @@ export const POST = async (ctx: Ctx, { url }: { url: string }) => {
       </label>
 
       <h2>Add another list</h2>
-      <form method="post" action="/AddList">
+      <form method="post" action="/AddOrUpdateBlocklist">
         <label>
           <span>URL</span>
           <input name="url" />

@@ -29,6 +29,10 @@ export const startMydns = async ({
   await mkdir(hostsDir, { recursive: true });
   const hostsDisabledDir = join(stateDir, "hosts-disabled");
   await mkdir(hostsDisabledDir, { recursive: true });
+  const customDir = join(stateDir, "custom");
+  await mkdir(customDir, { recursive: true });
+  const customDisabledDir = join(stateDir, "custom-disabled");
+  await mkdir(customDisabledDir, { recursive: true });
 
   const dnsmasq = spawn(
     "dnsmasq",
@@ -36,6 +40,7 @@ export const startMydns = async ({
       "--bogus-priv",
       "--conf-file=/dev/null",
       `--hostsdir=${hostsDir}`,
+      `--hostsdir=${customDir}`,
       // Don't use /etc/hosts.
       "--no-hosts",
       // Don't use system DNS resolvers.
@@ -90,6 +95,8 @@ upstream_recursive_servers:
       req.method == "GET" ? query : decodeUtf8(await readBufferStream(req))
     );
     const ctx: Ctx = {
+      customDir,
+      customDisabledDir,
       hostsDir,
       hostsDisabledDir,
       reload: () => {
@@ -100,7 +107,7 @@ upstream_recursive_servers:
     if (result instanceof Prg) {
       return res
         .writeHead(303, {
-          Location: `/${result.page}`,
+          Location: result.path,
         })
         .end();
     }

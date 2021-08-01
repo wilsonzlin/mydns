@@ -12,28 +12,32 @@ const STYLE = `
     line-height: 1.5;
     white-space: pre-wrap;
   }
-  
+
+  nav > * {
+    margin-left: 16px;
+  }
+
   a {
     color: blue;
     text-decoration: none;
   }
-  
+
   a:hover, a:focus {
     text-decoration: underline;
   }
-  
+
   button {
     padding: 6px 12px;
   }
-  
+
   input {
     padding: 8px;
   }
-  
+
   label {
     display: block;
   }
-  
+
   label > * {
     display: block;
     resize: none;
@@ -84,7 +88,8 @@ export const Page = ({
           <a href="/">MyDNS</a>
         </h1>
         <nav>
-          <a href="/AddList">Add list</a>
+          <a href="/AddOrUpdateBlocklist">Add blocklist</a>
+          <a href="/CreateNewCustomList">Create new custom list</a>
         </nav>
       </header>
       <main>{content}</main>

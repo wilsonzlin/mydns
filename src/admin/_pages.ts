@@ -1,9 +1,15 @@
-import * as AddList from "./AddList";
+import * as AddOrUpdateBlocklist from "./AddOrUpdateBlocklist";
+import * as CreateNewCustomList from "./CreateNewCustomList";
+import * as CustomList from "./CustomList";
 import * as Home from "./Home";
-import * as ToggleList from "./ToggleList";
+import * as ToggleBlacklist from "./ToggleBlacklist";
+import * as ToggleCustomList from "./ToggleCustomList";
 
 export const PAGES = {
-  AddList,
+  AddOrUpdateBlocklist,
+  CreateNewCustomList,
+  CustomList,
   Home,
-  ToggleList,
+  ToggleBlacklist,
+  ToggleCustomList,
 };
