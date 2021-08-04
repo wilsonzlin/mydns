@@ -44,6 +44,7 @@ export const GET = async (
               <tr>
                 <th>IP address</th>
                 <th>Hostname</th>
+                <th/>
               </tr>
             </thead>
             <tbody>
@@ -51,6 +52,15 @@ export const GET = async (
                 <tr key={i}>
                   <td>{addr}</td>
                   <td>{host}</td>
+                  <td>
+                    <form method="post">
+                      <input type="hidden" name="name" value={name} />
+                      <input type="hidden" name="action" value="delete" />
+                      <input type="hidden" name="ip" value={addr} />
+                      <input type="hidden" name="host" value={host} />
+                      <button type="submit">Delete</button>
+                    </form>
+                  </td>
                 </tr>
               ))}
             </tbody>
