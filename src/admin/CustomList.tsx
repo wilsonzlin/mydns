@@ -110,6 +110,6 @@ export const POST = async (
       findAndRemove(newLines, (l) => l[0] === ip && l[1] === host);
       break;
   }
-  await writeFile(list.path, newLines.map((l) => l.join(" ")).join(EOL));
+  await writeFile(list.path, newLines.map((l) => l.join(" ")).join(EOL) + EOL);
   return new Prg(`/CustomList?name=${encodeURIComponent(name)}`);
 };
