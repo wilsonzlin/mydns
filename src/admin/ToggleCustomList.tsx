@@ -14,5 +14,6 @@ export const POST = async (
   } else {
     await rename(enabledPath, disabledPath);
   }
+  ctx.reload();
   return new Prg("/");
 };

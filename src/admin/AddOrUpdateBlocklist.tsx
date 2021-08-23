@@ -51,7 +51,11 @@ export const POST = async (ctx: Ctx, { url }: { url: string }) => {
   }
 
   await rm(join(ctx.hostsDisabledDir, toHostsFileName(url)), { force: true });
-  await writeFile(join(ctx.hostsDir, toHostsFileName(url)), parsed.join(EOL) + EOL);
+  await writeFile(
+    join(ctx.hostsDir, toHostsFileName(url)),
+    parsed.join(EOL) + EOL
+  );
+  ctx.reload();
 
   return (
     <div>

@@ -145,6 +145,7 @@ if (require.main == module) {
         .then((mydns) => {
           process.on("SIGTERM", mydns.end);
           process.on("SIGINT", mydns.end);
+          process.on("exit", mydns.end);
         })
         .catch(console.error);
     });

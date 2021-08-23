@@ -44,7 +44,7 @@ export const GET = async (
               <tr>
                 <th>IP address</th>
                 <th>Hostname</th>
-                <th/>
+                <th />
               </tr>
             </thead>
             <tbody>
@@ -111,5 +111,6 @@ export const POST = async (
       break;
   }
   await writeFile(list.path, newLines.map((l) => l.join(" ")).join(EOL) + EOL);
+  ctx.reload();
   return new Prg(`/CustomList?name=${encodeURIComponent(name)}`);
 };
