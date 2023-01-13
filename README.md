@@ -21,6 +21,12 @@ npm i -g mydns
 
 npm's bin folder must be in your PATH. It's location can be found by running the command `npm bin -g`. You may need administrator/root privileges for the install.
 
+<details>
+<summary>Uninstalling</summary>
+
+To uninstall, run `npm uninstall -g mydns`. Make sure it is not running.
+</details>
+
 ### Running
 
 Simply run the `mydns` command to start the server:
@@ -83,4 +89,23 @@ systemctl daemon-reload
 systemctl --now enable mydns
 ```
 
-You may require `sudo` for the above commands.
+You may require `sudo` for the above commands. Some other relevant commands:
+
+```bash
+# View logs.
+journalctl -e --no-hostname -u mydns.service
+
+# Stop MyDNS until the system starts again.
+systemctl stop mydns
+# Start MyDNS if it's currently stopped.
+systemctl start mydns
+
+# Disable MyDNS from starting when the system starts.
+systemctl disable mydns
+# Re-enable MyDNS starting when the system starts.
+systemctl enable mydns
+
+# Delete the service (if uninstalling MyDNS) after it has already been disabled.
+rm /etc/systemd/system/mydns.service
+systemctl daemon-reload
+```
