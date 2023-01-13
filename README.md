@@ -112,7 +112,7 @@ systemctl daemon-reload
 
 ## Security
 
-While upstream DNS queries are made over TLS, MyDNS itself does not itself serve DNS-over-TLS queries, and as such should only be used inside a private network or on a local machine to avoid exposing DNS queries.
+While upstream DNS queries are made over TLS, MyDNS itself does not serve DNS-over-TLS queries, and as such should only be used inside a private network or on a local machine to avoid exposing DNS queries.
 
 The admin portal is not password protected, and is accessible to anyone on the same network unencrypted.
 
