@@ -50,3 +50,37 @@ To add a blocklist, select [Add blocklist](http://localhost:8053/AddOrUpdateBloc
 A blocklist is a text file where each line is a domain name. Blank lines and lines starting with `#` (comments) are ignored. You can create your own blocklists by creating a text file in this format and making it accessible via a URL.
 
 To create custom mappings, select [Create new custom list](http://localhost:8053/CreateNewCustomList). All custom mappings must be in a custom list, but you can create multiple lists for organisation purposes. Once created, you'll be taken to the page for the list, where you can add new entries and delete existing ones. Each change is saved and effective immediately. From the overview page, you can view and access these lists, as well as quickly enable or disable an entire list.
+
+### Running as background service
+
+If you'd like to keep MyDNS running in the background and automatically starting it on startup, it's recommended to register it as a service. This process varies for each operating system. On a Linux machine with systemd, it's possible to create a systemd service by creating a file using the following template and writing it to `/etc/systemd/system/mydns.service`:
+
+```
+[Unit]
+Description=mydns
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=mydns
+Group=mydns
+ExecStart=/usr/bin/mydns --state /mydns-working-dir --dns 53 --admin 8053
+SyslogLevelPrefix=no
+StandardOutput=journal
+StandardError=journal
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Adjust the `ExecStart` command path and CLI arguments as necessary. It's recommended to create a system user and group dedicated for this service for security; adjust `User` and `Group` as necessary.
+
+Once the file is in place, run:
+
+```bash
+systemctl daemon-reload
+systemctl --now enable mydns
+```
+
+You may require `sudo` for the above commands.
