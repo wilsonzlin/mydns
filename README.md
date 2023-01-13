@@ -122,9 +122,9 @@ It's strongly disadvised to place MyDNS on a public server and use it over the I
 
 ### Devices and clients using MyDNS as the DNS resolver can't connect to the Internet
 
-Ensure that the MyDNS DNS server is reachable from the device. If `nslookup` or `dig` is available, those commands can attempt a DNS request using a specific DNS server. You may need to unblock the port on any firewall sitting in between. Make sure that the DNS resolver configuration is correct (e.g. correct IP and port).
+Ensure that the MyDNS DNS server is reachable from the device. If `nslookup` or `dig` is available, those commands can test a DNS query using a specific DNS server. You may need to unblock the port on any firewall sitting in between. Make sure that the DNS resolver configuration is correct (e.g. correct IP and port).
 
-If the machine MyDNS is running on cannot connect to the upstream public DNS servers, then it will fail to resolve any queries for a domain not in a blocklist or custom mapping. Ensure that the Internet is reachable from the machine, and that Google and Cloudflare public DNS servers are reachable. Since DNS-over-TLS are used, ensure the machine is able to validate the TLS certificates and create a secure connection; check that the time in sync, CA stores are up to date, and no one is blocking or interfering with the connection.
+If the machine MyDNS is running on cannot connect to the upstream public DNS servers, then it will fail to resolve any queries for a domain not in a blocklist or custom mapping. Ensure that the Internet is reachable from the machine, and that Google and Cloudflare public DNS servers are reachable. Since DNS-over-TLS is used, ensure the machine is able to validate the TLS certificates and create a secure connection; check that the time is in sync, CA stores are up to date, and no one is blocking or interfering with the connection.
 
 ### A site in a blocklist is not being blocked
 
@@ -132,7 +132,7 @@ Blocklists work by resolving a blocked domain to 0.0.0.0, so check that MyDNS is
 
 ### I cannot access resources on my local network
 
-MyDNS uses Stubby as its upstream resolver, not your local DNS server, for privacy and security reasons. Stubby connects to public DNS resolvers like [1.1.1.1](https://1.1.1.1/) and [8.8.8.8](https://developers.google.com/speed/public-dns), which will not have any custom entries that may exist in your private network's resolver. Currently, there is no option to disable this; please raise an issue.
+MyDNS uses Stubby as its upstream resolver, not your local DNS server, for privacy and security reasons. It will use public DNS resolvers like [1.1.1.1](https://1.1.1.1/) and [8.8.8.8](https://developers.google.com/speed/public-dns), which will not have any custom entries that may exist in your private network's resolver. Currently, there is no option to disable this or choose a different resolver; please raise an issue.
 
 ## Developing
 
