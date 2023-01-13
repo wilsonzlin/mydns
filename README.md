@@ -1,6 +1,6 @@
 # MyDNS
 
-A customisable DNS server for your personal needs.
+A customisable DNS server for your personal needs. Extremely fast and lightweight on system resources.
 
 - Add blocklists to block [well-known](https://github.com/StevenBlack/hosts) malware or any custom sites on all your devices.
 - Create custom mappings, like friendly names to machines on your local network or VPN.
