@@ -2,7 +2,7 @@
 
 A customisable DNS server for your personal needs.
 
-- Add blocklists to block [well-known](https://github.com/StevenBlack/hosts) malware sites, or any custom sites you want to make unreachable from all your devices.
+- Add blocklists to block [well-known](https://github.com/StevenBlack/hosts) malware or any custom sites on all your devices.
 - Create custom mappings, like friendly names to machines on your local network or VPN.
 - Secure your public DNS queries by using an encrypted DNS-over-TLS provider, like [Cloudflare](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-tls/) or [Google](https://developers.google.com/speed/public-dns/docs/dns-over-tls).
 - Programmatically update blocklists and mappings (e.g. scripting and scheduling), or use the built-in UX from any device.
