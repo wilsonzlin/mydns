@@ -26,7 +26,7 @@ npm's bin folder must be in your PATH. It's location can be found by running the
 Simply run the `mydns` command to start the server:
 
 ```bash
-mydns --admin 8000 --dns 53 --state /path/to/state/dir
+mydns --admin 8053 --dns 53 --state /path/to/state/dir
 ```
 
 MyDNS requires a state directory for its exclusive use to hold blocklists and other information about itself; provide this directory using the `--state` CLI argument.
@@ -43,10 +43,10 @@ Make sure the DNS port is not blocked by any firewall.
 
 ### Configuring via the admin portal
 
-From the address of the admin portal (e.g. [localhost:8000](http://localhost:8000)), you'll see the overview screen showing active blocklists and custom mappings.
+From the address of the admin portal (e.g. [localhost:8053](http://localhost:8053)), you'll see the overview screen showing active blocklists and custom mappings.
 
-To add a blocklist, select [Add blocklist](localhost:8000/AddOrUpdateBlocklist), and enter the URL of the list. From the overview screen, you can update, disable/enable, and delete blocklists.
+To add a blocklist, select [Add blocklist](http://localhost:8053/AddOrUpdateBlocklist), and enter the URL of the list. From the overview screen, you can update, disable/enable, and delete blocklists.
 
 A blocklist is a text file where each line is a domain name. Blank lines and lines starting with `#` (comments) are ignored. You can create your own blocklists by creating a text file in this format and making it accessible via a URL.
 
-To create custom mappings, select [Create new custom list](http://localhost:8000/CreateNewCustomList). All custom mappings must be in a custom list, but you can create multiple lists for organisation purposes. Once created, you'll be taken to the page for the list, where you can add new entries and delete existing ones. Each change is saved and effective immediately. From the overview page, you can view and access these lists, as well as quickly enable or disable an entire list.
+To create custom mappings, select [Create new custom list](http://localhost:8053/CreateNewCustomList). All custom mappings must be in a custom list, but you can create multiple lists for organisation purposes. Once created, you'll be taken to the page for the list, where you can add new entries and delete existing ones. Each change is saved and effective immediately. From the overview page, you can view and access these lists, as well as quickly enable or disable an entire list.
