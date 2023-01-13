@@ -93,7 +93,7 @@ You may require `sudo` for the above commands. Some other relevant commands:
 
 ```bash
 # View logs.
-journalctl -e --no-hostname -u mydns.service
+journalctl -xeu mydns
 
 # Stop MyDNS until the system starts again.
 systemctl stop mydns
