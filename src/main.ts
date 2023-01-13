@@ -141,6 +141,14 @@ if (require.main == module) {
     .required("dns", parseInt)
     .required("state", String)
     .action(({ admin, dns, state }) => {
+      // Prevent running as root:
+      // - Breaks permissions of files and folders touched in state directory.
+      // - Will overwrite /dev/null and break the system, since we use that as the path for many dnsmasq arguments.
+      if (process.geteuid() == 0) {
+        console.error("MyDNS cannot be run as root");
+        return;
+      }
+
       startMydns({ adminPort: admin, dnsPort: dns, stateDir: state })
         .then((mydns) => {
           process.on("SIGTERM", mydns.end);

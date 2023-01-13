@@ -80,7 +80,7 @@ Restart=no
 WantedBy=multi-user.target
 ```
 
-Adjust the `ExecStart` command path and CLI arguments as necessary. It's recommended to create a system user and group dedicated for this service for security; adjust `User` and `Group` as necessary. **It's strongly disadvised to run MyDNS as root.**
+Adjust the `ExecStart` command path and CLI arguments as necessary. It's recommended to create a system user and group dedicated for this service for security; adjust `User` and `Group` as necessary. MyDNS cannot be run as root.
 
 Once the file is in place, run:
 
