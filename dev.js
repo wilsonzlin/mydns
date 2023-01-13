@@ -18,7 +18,7 @@ chokidar.watch(join(__dirname, "src")).on("all", (event, path) => {
     console.log("Starting server...");
     proc = spawn(
       join(__dirname, "dist", "main.js"),
-      ["--admin", "4444", "--dns", "5353", "--state", ".dev-state"],
+      ["--admin", "8153", "--dns", "5353", "--state", ".dev-state"],
       {
         cwd: __dirname,
         stdio: ["ignore", "inherit", "inherit"],

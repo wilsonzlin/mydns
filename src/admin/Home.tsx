@@ -99,6 +99,10 @@ export const GET = async (ctx: Ctx, {}: {}) => {
                     </button>
                   )}
                 </form>
+                <form action="/DeleteBlacklist" method="post">
+                  <input type="hidden" name="url" value={l.url} />
+                  <button type="submit">Delete</button>
+                </form>
               </td>
             </tr>
           ))}
@@ -145,11 +149,27 @@ export const GET = async (ctx: Ctx, {}: {}) => {
                     </button>
                   )}
                 </form>
+                <form action="/DeleteCustomList" method="post">
+                  <input type="hidden" name="name" value={c.name} />
+                  <button type="submit">Delete</button>
+                </form>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+        (() => {
+          for (const $cb of document.querySelectorAll("input[type=checkbox]")) {
+            $cb.addEventListener("click", e => e.preventDefault());
+          }
+        })();
+      `,
+        }}
+      />
     </div>
   );
 };

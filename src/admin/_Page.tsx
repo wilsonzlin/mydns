@@ -13,10 +13,6 @@ const STYLE = `
     white-space: pre-wrap;
   }
 
-  nav > * {
-    margin-left: 16px;
-  }
-
   a {
     color: blue;
     text-decoration: none;
@@ -58,10 +54,27 @@ const STYLE = `
     text-align: left;
   }
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  @media (min-width: 480px) {
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav > * {
+      margin-left: 16px;
+    }
+  }
+
+  @media (max-width: 479px) {
+    header > h1 {
+      margin-bottom: 12px;
+    }
+
+    header > nav > * {
+      display: block;
+      margin-bottom: 12px;
+    }
   }
 `;
 

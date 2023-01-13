@@ -2,9 +2,9 @@
 
 A customisable DNS server for your personal needs.
 
-- Add blocklists to block [well-known](https://github.com/StevenBlack/hosts) malware sites, or any custom sites you want to black hole.
+- Add blocklists to block [well-known](https://github.com/StevenBlack/hosts) malware sites, or any custom sites you want to make unreachable from all your devices.
 - Create custom mappings, like friendly names to machines on your local network or VPN.
-- Secure your public DNS queries by using a private DNS-over-TLS provider, like [Cloudflare](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-tls/) or [Google](https://developers.google.com/speed/public-dns/docs/dns-over-tls).
+- Secure your public DNS queries by using an encrypted DNS-over-TLS provider, like [Cloudflare](https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-tls/) or [Google](https://developers.google.com/speed/public-dns/docs/dns-over-tls).
 - Programmatically update blocklists and mappings (e.g. scripting and scheduling), or use the built-in UX from any device.
 
 ## Getting started
@@ -105,7 +105,7 @@ systemctl disable mydns
 # Re-enable MyDNS starting when the system starts.
 systemctl enable mydns
 
-# Delete the service (if uninstalling MyDNS) after it has already been disabled.
+# Delete the service (if uninstalling MyDNS).
 rm /etc/systemd/system/mydns.service
 systemctl daemon-reload
 ```
@@ -125,6 +125,10 @@ Blocklists work by resolving a blocked domain to 0.0.0.0, so check that MyDNS is
 ### I cannot access resources on my local network
 
 MyDNS uses Stubby as its upstream resolver, not your local DNS server, for privacy and security reasons. Stubby connects to public DNS resolvers like [1.1.1.1](https://1.1.1.1/) and [8.8.8.8](https://developers.google.com/speed/public-dns), which will not have any custom entries that may exist in your private network's resolver. Currently, there is no option to disable this; please raise an issue.
+
+## Developing
+
+This is a Node.js and npm project; check [package.json](./package.json) to see the relevant scripts for developing and building.
 
 ## Feedback and contributions
 
